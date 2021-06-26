@@ -44,6 +44,9 @@ set(PROJECT_SOURCES
         about.cpp
         about.h
         about.ui
+        error.cpp
+        error.h
+        error.ui
 
 )
 

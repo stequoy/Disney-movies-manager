@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QtCore>
 #include <QtGui>
+#include <set>
 #include <fstream>
 #include <sstream>
 #include <QMainWindow>
@@ -84,7 +85,7 @@ public:
                 for(int i = 0; i < (int) _data.size(); i++)
                 {
                     std::stringstream ss;
-                    ss << _data[i].movie_title << "," << _data[i].release_date << "," << _data[i].genre << "," << _data[i].mpaa_rating << "," << _data[i].total_gross << "," << _data[i].inflation_adjusted_gross << "\n";
+                    ss << _data[i].movie_title << "," << _data[i].release_date << "," << _data[i].genre << "," << _data[i].mpaa_rating << "," << _data[i].total_gross << "," << _data[i].inflation_adjusted_gross;
                     f.write(ss.str().c_str());
                 }
                 f.close();
@@ -125,6 +126,8 @@ public:
         update();
     }
 
+    std::set<std::string> genres;
+
     void open(QMainWindow* window)
     {
         QString fileName = QFileDialog::getOpenFileName(window,"Open File","*.csv");
@@ -139,7 +142,7 @@ public:
                 QList<QByteArray> lineAsVector = line.split(',');
                 int row = pointerToModel->rowCount(); // 2
 
-                    pointerToModel->insertRows(row, 1); // inserting row #2 (we have now three rows)
+                    pointerToModel->insertRows(row, 1);
 
                     QModelIndex index = pointerToModel->index(row, 0, QModelIndex());
                     pointerToModel->setData(index,lineAsVector.at(0));
@@ -149,6 +152,8 @@ public:
 
                     index = pointerToModel->index(row, 2, QModelIndex());
                     pointerToModel->setData(index,lineAsVector.at(2));
+
+                    genres.insert(lineAsVector.at(2).toStdString());
 
                     index = pointerToModel->index(row, 3, QModelIndex());
                     pointerToModel->setData(index,lineAsVector.at(4));
