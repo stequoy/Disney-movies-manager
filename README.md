@@ -1,6 +1,6 @@
 # Disney Movie Database Application
 
-Welcome to the Disney Movie Database Application repository. This project is a GUI application for organizing and managing a database of Disney movies.
+Welcome to the Disney Movie Database Application repository. This project is a GUI application for organizing and managing a database of Disney movies. You are welcome to read the [report](https://drive.google.com/file/d/1I9WBQ-nnEvCtUhNwwyCRp0R-Wonkr5Si/view?usp=sharing) if you want to learn more.
 
 ## Project Description
 
